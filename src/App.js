@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Landing from './components/Landing';
+import { Navbar } from './components/Layout';
 import './App.css';
 
 function App() {
-  return <button className="btn btn-primary">asd</button>;
+  return (
+    <Router>
+      <Fragment>
+        <Navbar />
+
+        <Route exact path="/" component={Landing} />
+      </Fragment>
+    </Router>
+  );
 }
 
 export default App;
