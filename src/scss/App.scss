@@ -10,7 +10,7 @@ body {
   font-family: 'Heebo', sans-serif;
   font-size: 10px;
   line-height: 1.5;
-  background-color: $primary-color;
+  background-color: $white-color;
   color: $white-color;
 }
 
@@ -35,15 +35,44 @@ img {
   padding: 0.5rem 1.2rem;
   overflow: hidden;
   position: relative;
+  margin-right: 0.8rem;
+
+  &.btn-border {
+    border: 1px solid $white-color;
+    background-color: transparent;
+    color: $white-color;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &::before {
+      background-color: $white-color;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      z-index: -1;
+      width: 120%;
+      height: 0;
+      @include easeOut;
+    }
+
+    &:hover::before {
+      height: 400%;
+    }
+  }
 
   &.btn-primary {
     background-color: $secondary-color;
     color: $white-color;
+    border: 1px solid $secondary-color;
     @include easeOut;
 
     &:first-child {
       z-index: 1;
-      position: absolute;
+      position: relative;
     }
 
     &::before {
@@ -84,9 +113,9 @@ img {
     height: 100%;
     width: 100%;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0px 100px 250px rgba(0, 0, 0, 0.8),
-      inset 0px -100px 250px $primary-color;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: inset 100px 100px 250px rgba(0, 0, 0, 0.8),
+      inset -100px -100px 250px $primary-color;
   }
 }
 
@@ -95,6 +124,8 @@ img {
   padding: 1rem 2rem;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
+  position: relative;
 
   .menu-nav {
     display: flex;
@@ -166,5 +197,56 @@ img {
         background-color: $primary-color;
       }
     }
+  }
+}
+
+.spinner-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  background-image: radial-gradient(#243b55, #141e30);
+  opacity: 0.9;
+
+  .spinner {
+    width: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.trending-hero-box {
+  position: relative;
+  max-width: 80rem;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .trending-text {
+    font-size: 1.3rem;
+    background-color: $white-color;
+    display: inline-block;
+    color: $primary-color;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .trending-movie-title {
+    font-size: 4rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: $white-color;
+    text-shadow: 3px 2px 4px lighten($primary-color, 10);
+  }
+
+  .trending-movie-desc {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
   }
 }
