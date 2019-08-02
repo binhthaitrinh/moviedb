@@ -1,0 +1,46 @@
+@import 'config';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  pargin: 0;
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  background-color: $primary-color;
+  color: $white-color;
+}
+
+a {
+  text-decoration: none;
+  color: $white-color;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  border-radius: 3px;
+  padding: 0.5rem 1.2rem;
+
+  &.btn-primary {
+    background-color: $secondary-color;
+    color: $white-color;
+    @include easeOut;
+
+    &:hover {
+      background-color: darken($secondary-color, 15);
+    }
+  }
+}

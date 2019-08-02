@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  return <div className="App">Welcome to the movie db</div>;
+  return <button className="btn btn-primary">asd</button>;
 }
 
 export default App;
