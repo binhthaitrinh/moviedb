@@ -1,6 +1,18 @@
 import axios from 'axios';
-import { GET_TRENDING } from './types';
-import { API_KEY, PATH_BASE, PARAM_TRENDING } from '../constants/movieDB';
+import {
+  GET_TRENDING,
+  GET_NOW_PLAYING_MOVIE,
+  GET_POPULAR_MOVIE,
+  GET_TOP_RATED_MOVIE
+} from './types';
+import {
+  API_KEY,
+  PATH_BASE,
+  PARAM_TRENDING,
+  PARAM_NOW_PLAYING_MOVIE,
+  PARAM_MOVIE_TYPE,
+  PARAM_POPULAR_MOVIE
+} from '../constants/movieDB';
 
 export const getTrending = () => async dispatch => {
   try {
@@ -14,5 +26,48 @@ export const getTrending = () => async dispatch => {
         payload: res.data.results
       });
     }, 400);
+  } catch (err) {}
+};
+
+export const getNowPlayingMovie = () => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}${PARAM_MOVIE_TYPE}/${PARAM_NOW_PLAYING_MOVIE}?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    dispatch({
+      type: GET_NOW_PLAYING_MOVIE,
+      payload: res.data.results
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getPopularMovie = () => async dispatch => {
+  try {
+    const res = await axios.get(`
+    ${PATH_BASE}${PARAM_MOVIE_TYPE}/${PARAM_POPULAR_MOVIE}?api_key=${API_KEY}&language=en-US&page=1
+    `);
+
+    console.log(res);
+
+    dispatch({
+      type: GET_POPULAR_MOVIE,
+      payload: res.data.results
+    });
+  } catch (err) {}
+};
+
+export const getTopRatedMovie = () => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}${PARAM_MOVIE_TYPE}/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+    );
+
+    dispatch({
+      type: GET_TOP_RATED_MOVIE,
+      payload: res.data.results
+    });
   } catch (err) {}
 };

@@ -259,3 +259,23 @@ img {
   background-size: cover;
   background-position: center;
   height: 250px; }
+  .swiper-slide:hover .movie-info {
+    height: 50%;
+    opacity: 0.9; }
+  .swiper-slide .movie-info {
+    height: 0px;
+    width: 100%;
+    background-color: #83050b;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    text-align: left;
+    padding: 0.8rem 0.5rem;
+    color: #fff;
+    transition: all 0.5s ease-out; }
+    .swiper-slide .movie-info .movie-info-title {
+      font-size: 1.2rem;
+      text-transform: uppercase; }
+    .swiper-slide .movie-info .movie-info-genre {
+      font-size: 0.8rem; }

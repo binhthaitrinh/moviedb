@@ -344,4 +344,32 @@ img {
   background-size: cover;
   background-position: center;
   height: 250px;
+
+  &:hover .movie-info {
+    height: 50%;
+    opacity: 0.9;
+  }
+
+  .movie-info {
+    height: 0px;
+    width: 100%;
+    background-color: darken($secondary-color, 20);
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    text-align: left;
+    padding: 0.8rem 0.5rem;
+    color: $white-color;
+    @include easeOut;
+
+    .movie-info-title {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .movie-info-genre {
+      font-size: 0.8rem;
+    }
+  }
 }

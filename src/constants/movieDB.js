@@ -10,3 +10,4 @@ export const PARAM_NOW_PLAYING_TV = 'on_the_air';
 export const PARAM_CREDIT = 'credits';
 export const PARAM_TRAILER = 'videos';
 export const PARAM_TRENDING = 'trending';
+export const PARAM_POPULAR_MOVIE = 'popular';

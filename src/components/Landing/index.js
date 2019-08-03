@@ -1,15 +1,18 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import Slideshow from './Slideshow';
 import { connect } from 'react-redux';
-import { getTrending } from '../../actions/movie';
+import { getTrending, getNowPlayingMovie } from '../../actions/movie';
 import { Spinner } from '../Layout';
-import ImageCarousel from '../ImageCarousel';
+import { MovieCarousels } from '../Movie';
+import SpinnerSm from '../Layout/SpinnerSm';
 
-const Landing = ({ movie, getTrending }) => {
+const Landing = ({ movie, getTrending, getNowPlayingMovie }) => {
+  const [type, setType] = useState('tv');
   useEffect(() => {
     getTrending();
-  }, [getTrending]);
+  }, [getTrending, getNowPlayingMovie]);
   const { loading, movies } = movie.trending;
+  const { nowPlayingMovies } = movie;
   console.log(movies);
   return loading ? (
     <Spinner />
@@ -21,13 +24,18 @@ const Landing = ({ movie, getTrending }) => {
 
       <div className="section-content">
         <div className="type-selector">
-          <button className="btn btn-primary btn-lg">Movies</button>
-          <button className="btn btn-border-dark btn-lg">TV shows</button>
+          <button
+            onClick={() => setType('movie')}
+            className="btn btn-primary btn-lg">
+            Movies
+          </button>
+          <button
+            onClick={() => setType('tv')}
+            className="btn btn-border-dark btn-lg">
+            TV shows
+          </button>
         </div>
-        <div className="section-movie-list">
-          <h1 className="section-movie-list-header">Trending</h1>
-          <ImageCarousel movies={movies} />
-        </div>
+        {type === 'movie' ? <MovieCarousels /> : <SpinnerSm />}
       </div>
     </Fragment>
   );
