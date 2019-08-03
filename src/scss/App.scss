@@ -10,7 +10,7 @@ body {
   font-family: 'Heebo', sans-serif;
   font-size: 10px;
   line-height: 1.5;
-  background-color: $white-color;
+  background-color: darken($white-color, 5);
   color: $white-color;
 }
 
@@ -37,6 +37,12 @@ img {
   position: relative;
   margin-right: 0.8rem;
 
+  &.btn-lg {
+    font-size: 1.5rem;
+    padding: 0.6rem 3rem;
+    margin-right: 1.5rem;
+  }
+
   &.btn-border {
     border: 1px solid $white-color;
     background-color: transparent;
@@ -48,6 +54,33 @@ img {
 
     &::before {
       background-color: $white-color;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      z-index: -1;
+      width: 120%;
+      height: 0;
+      @include easeOut;
+    }
+
+    &:hover::before {
+      height: 400%;
+    }
+  }
+
+  &.btn-border-dark {
+    border: 1px solid $primary-color;
+    background-color: transparent;
+    color: $primary-color;
+
+    &:hover {
+      color: $white-color;
+    }
+
+    &::before {
+      background-color: $primary-color;
       content: '';
       position: absolute;
       top: 50%;
@@ -94,6 +127,12 @@ img {
   }
 }
 
+.header2 {
+  background-color: $primary-color;
+  position: relative;
+  height: 100vh;
+}
+
 .bg {
   position: absolute;
   top: 0;
@@ -105,7 +144,7 @@ img {
   z-index: 0;
   will-change: opacity;
 
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     top: 0;
@@ -125,7 +164,10 @@ img {
   justify-content: space-between;
   align-items: center;
   z-index: 2;
-  position: relative;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
 
   .menu-nav {
     display: flex;
@@ -249,4 +291,57 @@ img {
     font-size: 1.2rem;
     margin-bottom: 0.8rem;
   }
+}
+
+.section-content {
+  background-color: $white-color;
+  min-height: 100vh;
+  max-width: 90rem;
+  // box-shadow: 2px 2px 4px 12px ($primary-color),
+  //   -2px 2px 4px 6px lighten($primary-color, 60);
+  margin: 0 auto;
+  margin-top: -8rem;
+  position: relative;
+  z-index: 10;
+  padding: 6rem 6rem;
+
+  .type-selector {
+    text-align: center;
+  }
+}
+
+.section-movie-list {
+  color: lighten($primary-color, 18);
+  margin-top: 3rem;
+
+  &-header {
+    font-size: 3rem;
+    text-transform: uppercase;
+  }
+}
+
+.swiper-container {
+  width: 100%;
+  height: 330px;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
 }
