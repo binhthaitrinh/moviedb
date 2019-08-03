@@ -11,3 +11,5 @@ export const PARAM_CREDIT = 'credits';
 export const PARAM_TRAILER = 'videos';
 export const PARAM_TRENDING = 'trending';
 export const PARAM_POPULAR_MOVIE = 'popular';
+
+export const PARAM_LATEST_TV = 'latest';

@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { getTrending, getNowPlayingMovie } from '../../actions/movie';
 import { Spinner } from '../Layout';
 import { MovieCarousels } from '../Movie';
+import TVCarousels from '../TV/TVCarousels';
 import SpinnerSm from '../Layout/SpinnerSm';
 
 const Landing = ({ movie, getTrending, getNowPlayingMovie }) => {
-  const [type, setType] = useState('tv');
+  const [type, setType] = useState('movie');
   useEffect(() => {
     getTrending();
   }, [getTrending, getNowPlayingMovie]);
@@ -35,7 +36,7 @@ const Landing = ({ movie, getTrending, getNowPlayingMovie }) => {
             TV shows
           </button>
         </div>
-        {type === 'movie' ? <MovieCarousels /> : <SpinnerSm />}
+        {type === 'movie' ? <MovieCarousels /> : <TVCarousels />}
       </div>
     </Fragment>
   );
