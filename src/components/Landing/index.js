@@ -5,7 +5,6 @@ import { getTrending, getNowPlayingMovie } from '../../actions/movie';
 import { Spinner } from '../Layout';
 import { MovieCarousels } from '../Movie';
 import TVCarousels from '../TV/TVCarousels';
-import SpinnerSm from '../Layout/SpinnerSm';
 
 const Landing = ({ movie, getTrending, getNowPlayingMovie }) => {
   const [type, setType] = useState('movie');

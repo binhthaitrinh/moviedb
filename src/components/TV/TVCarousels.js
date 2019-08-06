@@ -23,15 +23,15 @@ const TVCarousels = ({
       <div className="section-movie-list">
         {console.log(popularTV.movies, 232323)}
         <h1 className="section-movie-list-header">Popular TV</h1>
-        <ImageCarousel movies={popularTV.movies} />
+        <ImageCarousel movies={popularTV.movies} type="tv" />
       </div>
       <div className="section-movie-list">
         <h1 className="section-movie-list-header">Latest TV</h1>
-        <ImageCarousel movies={latestTV.movies} />
+        <ImageCarousel movies={latestTV.movies} type="tv" />
       </div>
       <div className="section-movie-list">
         <h1 className="section-movie-list-header">Top Rated TV</h1>
-        <ImageCarousel movies={topRatedTV.movies} />
+        <ImageCarousel movies={topRatedTV.movies} type="tv" />
       </div>
     </Fragment>
   );

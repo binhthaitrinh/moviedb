@@ -322,7 +322,7 @@ img {
 
 .swiper-container {
   width: 100%;
-  height: 330px;
+  height: 380px;
 }
 .swiper-slide {
   text-align: center;
@@ -372,4 +372,45 @@ img {
       font-size: 0.8rem;
     }
   }
+}
+
+.footer {
+  background-color: lighten($primary-color, 10);
+  color: $white-color;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.movie-detail-section {
+  color: $primary-color;
+  padding: 6rem 6rem;
+  text-align: center;
+
+  .movie-detail-content {
+    margin-bottom: 3rem;
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.movie-detail-header {
+  font-size: 3rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 8rem;
+    height: 2px;
+    background-color: $primary-color;
+    margin: auto;
+  }
+}
+
+.long-post {
+  font-size: 1rem;
 }

@@ -3,7 +3,7 @@ import Swiper from 'swiper';
 import { Link } from 'react-router-dom';
 import Genre from '../../constants/Genre';
 
-const ImageCarousel = ({ movies }) => {
+const ImageCarousel = ({ movies, type }) => {
   const swiperRef = useRef(null);
 
   console.log(swiperRef.current);
@@ -58,7 +58,9 @@ const ImageCarousel = ({ movies }) => {
               })`
             }}>
             <div className="movie-info">
-              <h1 className="movie-info-title">{movie.title}</h1>
+              <h1 className="movie-info-title">
+                {type === 'tv' ? movie.name : movie.title}
+              </h1>
               <p className="movie-info-genre">
                 {movie.genre_ids.map(id => helper(id)).join(', ')}
               </p>
