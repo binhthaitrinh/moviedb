@@ -56,18 +56,22 @@ const Navbar = ({ auth, logout }) => {
                   }}
                 />
                 <div className="profile-panel">
-                  <ul className="profile-list">
-                    <li>{auth.user.credentials.handle}</li>
-                    <li>{auth.user.credentials.location}</li>
-                  </ul>
+                  <h1>{auth.user.credentials.handle}</h1>
+                  <p className="long-post">{auth.user.credentials.location}</p>
                   <hr />
                   <p>Account</p>
-                  <button className="btn btn-border">Sign out</button>
+                  <button onClick={() => logout()} className="btn btn-normal">
+                    Sign out
+                  </button>
                 </div>
               </div>
             ) : (
               <Link to="/login">
-                <button className="btn btn-primary">Login</button>
+                <button
+                  style={{ marginLeft: '1rem' }}
+                  className="btn btn-primary">
+                  Sign in
+                </button>
               </Link>
             )}
           </div>
