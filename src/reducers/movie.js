@@ -35,6 +35,11 @@ const initialState = {
     loading: true,
     error: {}
   },
+  movieTrailer: {
+    trailers: null,
+    loading: true,
+    error: {}
+  },
   movie: null,
   loading: true,
   error: {}
@@ -95,11 +100,11 @@ export default function(state = initialState, action) {
     case GET_MOVIE_TRAILER:
       return {
         ...state,
-        movie: {
-          ...state.movie,
-          trailers: payload
-        },
-        loading: false
+        movieTrailer: {
+          ...state.movieTrailer,
+          trailers: payload,
+          loading: false
+        }
       };
     case GET_MOVIE_CREDIT:
       return {

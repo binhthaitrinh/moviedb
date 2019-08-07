@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/auth';
 
-const Navbar = () => {
+const Navbar = ({ auth, logout }) => {
   return (
     <Fragment>
       <header>
@@ -44,7 +46,30 @@ const Navbar = () => {
                 <i className="fas fa-search" />
               </Link>
             </form>
-            <div className="profile-avatar" />
+            {/* <div className="profile-avatar" /> */}
+            {auth.isAuthenticated ? (
+              <div className="profile-avatar">
+                <div
+                  className="profile-avatar-avatar"
+                  style={{
+                    backgroundImage: `url(${auth.user.credentials.imageUrl})`
+                  }}
+                />
+                <div className="profile-panel">
+                  <ul className="profile-list">
+                    <li>{auth.user.credentials.handle}</li>
+                    <li>{auth.user.credentials.location}</li>
+                  </ul>
+                  <hr />
+                  <p>Account</p>
+                  <button className="btn btn-border">Sign out</button>
+                </div>
+              </div>
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-primary">Login</button>
+              </Link>
+            )}
           </div>
         </nav>
       </header>
@@ -52,4 +77,11 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);

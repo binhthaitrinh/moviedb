@@ -1,19 +1,19 @@
 import React, { Fragment, useEffect } from 'react';
-import { getTrailer } from '../../actions/movie';
-import { connect } from 'react-redux';
-import SpinnerSm from '../Layout/SpinnerSm';
 
 const MovieTrailer = props => {
+  console.log(props.trailers);
   const renderTrailer = () => {
-    if (props.trailers && props.trailers.length > 0) {
+    if (props.trailers.trailers && props.trailers.trailers.length > 0) {
       return (
         <Fragment>
           <iframe
-            title={props.trailers[0].name}
+            title={props.trailers.trailers[0].name}
             width="728"
             height="409"
             style={{ marginTop: '2rem' }}
-            src={`https://www.youtube.com/embed/${props.trailers[0].key}`}
+            src={`https://www.youtube.com/embed/${
+              props.trailers.trailers[0].key
+            }`}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -21,7 +21,7 @@ const MovieTrailer = props => {
         </Fragment>
       );
     } else {
-      return <p className="long-post">Np trailers available!</p>;
+      return <p className="long-post">No trailers available!</p>;
     }
   };
 

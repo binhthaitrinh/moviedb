@@ -32,9 +32,7 @@ const ActorCarousel = ({ movieCredit }) => {
     });
   });
 
-  return movieCredit.loading ? (
-    <SpinnerSm />
-  ) : (
+  return movieCredit.loading ? null : (
     <div className="movie-detail-content">
       <h1 className="movie-detail-header">Cast</h1>
       <div className="swiper-container" ref={swiperRef}>

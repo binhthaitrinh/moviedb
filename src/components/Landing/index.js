@@ -13,7 +13,7 @@ const Landing = ({ movie, getTrending, getNowPlayingMovie }) => {
   }, [getTrending, getNowPlayingMovie]);
   const { loading, movies } = movie.trending;
   const { nowPlayingMovies } = movie;
-  console.log(movies);
+
   return loading ? (
     <Spinner />
   ) : (

@@ -18,10 +18,15 @@ import {
   PARAM_POPULAR_MOVIE
 } from '../constants/movieDB';
 
+const config = {
+  headers: null
+};
+
 export const getTrending = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}${PARAM_TRENDING}/all/day?api_key=${API_KEY}`
+      `${PATH_BASE}${PARAM_TRENDING}/all/day?api_key=${API_KEY}`,
+      config
     );
 
     setTimeout(() => {
@@ -36,7 +41,8 @@ export const getTrending = () => async dispatch => {
 export const getNowPlayingMovie = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}${PARAM_MOVIE_TYPE}/${PARAM_NOW_PLAYING_MOVIE}?api_key=${API_KEY}&language=en-US&page=1`
+      `${PATH_BASE}${PARAM_MOVIE_TYPE}/${PARAM_NOW_PLAYING_MOVIE}?api_key=${API_KEY}&language=en-US&page=1`,
+      config
     );
 
     dispatch({
@@ -50,9 +56,12 @@ export const getNowPlayingMovie = () => async dispatch => {
 
 export const getPopularMovie = () => async dispatch => {
   try {
-    const res = await axios.get(`
+    const res = await axios.get(
+      `
     ${PATH_BASE}${PARAM_MOVIE_TYPE}/${PARAM_POPULAR_MOVIE}?api_key=${API_KEY}&language=en-US&page=1
-    `);
+    `,
+      config
+    );
 
     console.log(res);
 
@@ -66,7 +75,8 @@ export const getPopularMovie = () => async dispatch => {
 export const getTopRatedMovie = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}${PARAM_MOVIE_TYPE}/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+      `${PATH_BASE}${PARAM_MOVIE_TYPE}/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
+      config
     );
 
     dispatch({
@@ -82,7 +92,8 @@ export const getMovieDetail = id => async dispatch => {
   });
   try {
     const res = await axios.get(
-      `${PATH_BASE}movie/${id}?api_key=${API_KEY}&language=en-US`
+      `${PATH_BASE}movie/${id}?api_key=${API_KEY}&language=en-US`,
+      config
     );
     console.log(res);
     dispatch({
@@ -95,7 +106,8 @@ export const getMovieDetail = id => async dispatch => {
 export const getTrailer = id => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+      `${PATH_BASE}movie/${id}/videos?api_key=${API_KEY}&language=en-US`,
+      config
     );
 
     dispatch({
@@ -108,7 +120,8 @@ export const getTrailer = id => async dispatch => {
 export const getMovieCredit = id => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}movie/${id}/credits?api_key=${API_KEY}`
+      `${PATH_BASE}movie/${id}/credits?api_key=${API_KEY}`,
+      config
     );
 
     dispatch({

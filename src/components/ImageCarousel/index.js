@@ -6,8 +6,6 @@ import Genre from '../../constants/Genre';
 const ImageCarousel = ({ movies, type }) => {
   const swiperRef = useRef(null);
 
-  console.log(swiperRef.current);
-
   useEffect(() => {
     const slider = new Swiper(swiperRef.current, {
       slidesPerView: 5,
