@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
   getMovieDetail,
@@ -21,7 +21,7 @@ const MovieDetail = ({
     getMovieDetail(match.params.id);
     getTrailer(match.params.id);
     getMovieCredit(match.params.id);
-  }, [getMovieDetail, getTrailer]);
+  }, [getMovieDetail, getTrailer, getMovieCredit, match.params.id]);
   return movie.loading ? (
     <Spinner />
   ) : (

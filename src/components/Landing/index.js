@@ -1,18 +1,17 @@
 import React, { useEffect, Fragment, useState } from 'react';
 import Slideshow from './Slideshow';
 import { connect } from 'react-redux';
-import { getTrending, getNowPlayingMovie } from '../../actions/movie';
+import { getTrending } from '../../actions/movie';
 import { Spinner } from '../Layout';
 import { MovieCarousels } from '../Movie';
 import TVCarousels from '../TV/TVCarousels';
 
-const Landing = ({ movie, getTrending, getNowPlayingMovie }) => {
+const Landing = ({ movie, getTrending }) => {
   const [type, setType] = useState('movie');
   useEffect(() => {
     getTrending();
-  }, [getTrending, getNowPlayingMovie]);
+  }, [getTrending]);
   const { loading, movies } = movie.trending;
-  const { nowPlayingMovies } = movie;
 
   return loading ? (
     <Spinner />

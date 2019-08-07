@@ -1,7 +1,6 @@
-import React, { useEffect, Fragment, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Swiper from 'swiper';
 import { Link } from 'react-router-dom';
-import SpinnerSm from '../Layout/SpinnerSm';
 
 const ActorCarousel = ({ movieCredit }) => {
   const swiperRef = useRef(null);

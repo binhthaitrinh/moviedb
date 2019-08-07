@@ -3,12 +3,12 @@ import axios from 'axios';
 import { GET_LATEST_TV, GET_TOP_RATED_TV, GET_POPULAR_TV } from './types';
 import {
   API_KEY,
-  PATH_BASE,
-  PARAM_TRENDING,
-  PARAM_NOW_PLAYING_MOVIE,
-  PARAM_MOVIE_TYPE,
-  PARAM_POPULAR_MOVIE,
-  PARAM_LATEST_TV
+  PATH_BASE
+  // PARAM_TRENDING,
+  // PARAM_NOW_PLAYING_MOVIE,
+  // PARAM_MOVIE_TYPE,
+  // PARAM_POPULAR_MOVIE,
+  // PARAM_LATEST_TV
 } from '../constants/movieDB';
 
 export const getTopRatedTV = () => async dispatch => {

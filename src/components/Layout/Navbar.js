@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
@@ -47,7 +47,7 @@ const Navbar = ({ auth, logout }) => {
               </Link>
             </form>
             {/* <div className="profile-avatar" /> */}
-            {auth.isAuthenticated ? (
+            {auth.isAuthenticated && auth.user ? (
               <div className="profile-avatar">
                 <div
                   className="profile-avatar-avatar"

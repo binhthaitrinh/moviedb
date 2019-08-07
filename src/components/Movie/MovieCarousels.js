@@ -22,7 +22,6 @@ const MovieCarousels = ({
     getTopRatedMovie();
   }, [getNowPlayingMovie, getPopularMovie, getTopRatedMovie]);
 
-  const { movies } = trending;
   return nowPlayingMovies.loading ? (
     <SpinnerSm />
   ) : (

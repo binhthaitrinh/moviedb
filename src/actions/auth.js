@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../components/utils/setAuthToken';
+// import { setAlert } from './alert';
 
 // Load User
 export const loadUser = () => async dispatch => {

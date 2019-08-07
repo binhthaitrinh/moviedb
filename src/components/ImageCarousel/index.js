@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Swiper from 'swiper';
 import { Link } from 'react-router-dom';
 import Genre from '../../constants/Genre';

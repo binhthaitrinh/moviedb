@@ -6,13 +6,13 @@ import Footer from './components/Layout/Footer';
 import { Navbar } from './components/Layout';
 import MovieDetail from './components/MovieDetail';
 import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 import ScrollToTop from './components/Layout/ScrollToTop';
 import store from './store';
-import loadFirebase from './actions/auth';
-import Firebase from './components/FIrebase';
+
 import './App.css';
 import './swiper.css';
-import axios from 'axios';
+
 import setAuthToken from './components/utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
@@ -38,6 +38,7 @@ function App() {
           <Switch>
             <Route exact path="/movie/details/:id" component={MovieDetail} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
           </Switch>
           <Footer />
         </Fragment>
