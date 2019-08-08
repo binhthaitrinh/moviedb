@@ -24,11 +24,7 @@ const Navbar = ({ auth, logout }) => {
                 Discover
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                My List
-              </Link>
-            </li>
+
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 Recently added
@@ -60,6 +56,7 @@ const Navbar = ({ auth, logout }) => {
                   <p className="long-post">{auth.user.credentials.location}</p>
                   <hr />
                   <p>Account</p>
+                  <p>My List</p>
                   <button onClick={() => logout()} className="btn btn-normal">
                     Sign out
                   </button>

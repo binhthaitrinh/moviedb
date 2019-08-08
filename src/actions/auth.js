@@ -1,6 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../components/utils/setAuthToken';
-// import { setAlert } from './alert';
+import { setAlert } from './alert';
 
 // Load User
 export const loadUser = () => async dispatch => {
@@ -21,6 +21,7 @@ export const loadUser = () => async dispatch => {
 };
 
 export const login = formData => async dispatch => {
+  dispatch({ type: 'LOADING_UI' });
   try {
     const res = await axios.post(
       'https://us-central1-social-ape-c1875.cloudfunctions.net/api/login',
@@ -33,6 +34,7 @@ export const login = formData => async dispatch => {
     });
 
     dispatch(loadUser());
+    dispatch({ type: 'CLEAR_LOADING' });
   } catch (err) {
     console.log(err);
   }

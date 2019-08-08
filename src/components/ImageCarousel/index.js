@@ -3,7 +3,7 @@ import Swiper from 'swiper';
 import { Link } from 'react-router-dom';
 import Genre from '../../constants/Genre';
 
-const ImageCarousel = ({ movies, type }) => {
+const ImageCarousel = ({ movies, type = 'movie' }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const ImageCarousel = ({ movies, type }) => {
       <div className="swiper-wrapper">
         {movies.map(movie => (
           <Link
-            to={`/movie/details/${movie.id}`}
+            to={`/${type}/details/${movie.id}`}
             key={movie.id}
             className="swiper-slide"
             style={{

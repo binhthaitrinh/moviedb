@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import Footer from './components/Layout/Footer';
 import { Navbar } from './components/Layout';
 import MovieDetail from './components/MovieDetail';
+import TvDetail from './components/TV/TvDetail';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import ScrollToTop from './components/Layout/ScrollToTop';
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Switch>
             <Route exact path="/movie/details/:id" component={MovieDetail} />
+            <Route exact path="/tv/details/:id" component={TvDetail} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
           </Switch>

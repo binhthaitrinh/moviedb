@@ -11,3 +11,6 @@ export const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
 export const SET_LOADING = 'SET_LOADING';
 export const GET_MOVIE_CREDIT = 'GET_MOVIE_CREDIT';
 export const GET_MOVIE_TRAILER = 'GET_MOVIE_TRAILER';
+export const GET_TV_DETAIL = 'GET_TV_DETAIL';
+export const GET_TV_CREDIT = 'GET_TV_CREDIT';
+export const GET_TV_TRAILER = 'GET_TV_TRAILER';

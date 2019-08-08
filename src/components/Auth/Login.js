@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Alert from '../Layout/Alert';
 import { Link } from 'react-router-dom';
+import SpinnerInner from '../Layout/SpinnerInner';
 
 const initial = { email: '', password: '' };
 
-const Login = ({ login, isAuthenticated, user }) => {
+const Login = ({ login, isAuthenticated, user, UI }) => {
   const [formData, setFormData] = useState({ ...initial });
   const { email, password } = formData;
 
@@ -50,13 +51,13 @@ const Login = ({ login, isAuthenticated, user }) => {
           </div>
 
           <button
+            style={{ width: '7rem', height: '2.5rem' }}
             onClick={e => {
               e.preventDefault();
               login(formData);
-              console.log(formData);
             }}
             className="btn btn-border-primary">
-            Submit
+            {UI.loading ? <SpinnerInner /> : 'Submit'}
           </button>
         </form>
         <p className="long-post">
@@ -69,7 +70,8 @@ const Login = ({ login, isAuthenticated, user }) => {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+  UI: state.ui
 });
 
 export default connect(

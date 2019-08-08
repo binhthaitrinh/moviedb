@@ -1,15 +1,18 @@
 import axios from 'axios';
 
-import { GET_LATEST_TV, GET_TOP_RATED_TV, GET_POPULAR_TV } from './types';
 import {
-  API_KEY,
-  PATH_BASE
-  // PARAM_TRENDING,
-  // PARAM_NOW_PLAYING_MOVIE,
-  // PARAM_MOVIE_TYPE,
-  // PARAM_POPULAR_MOVIE,
-  // PARAM_LATEST_TV
-} from '../constants/movieDB';
+  GET_LATEST_TV,
+  GET_TOP_RATED_TV,
+  GET_POPULAR_TV,
+  GET_TV_DETAIL,
+  GET_TV_CREDIT,
+  GET_TV_TRAILER
+} from './types';
+import { API_KEY, PATH_BASE } from '../constants/movieDB';
+
+const config = {
+  headers: null
+};
 
 export const getTopRatedTV = () => async dispatch => {
   try {
@@ -47,6 +50,50 @@ export const getPopularTV = () => async dispatch => {
 
     dispatch({
       type: GET_POPULAR_TV,
+      payload: res.data.results
+    });
+  } catch (err) {}
+};
+
+export const getTvDetail = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}tv/${id}?api_key=${API_KEY}&language=en-US`,
+      config
+    );
+
+    console.log(res);
+
+    dispatch({
+      type: GET_TV_DETAIL,
+      payload: res.data
+    });
+  } catch (err) {}
+};
+
+export const getCredit = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}tv/${id}/credits?api_key=${API_KEY}`,
+      config
+    );
+
+    dispatch({
+      type: GET_TV_CREDIT,
+      payload: res.data.cast
+    });
+  } catch (err) {}
+};
+
+export const getTrailer = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}tv/${id}/videos?api_key=${API_KEY}`,
+      config
+    );
+
+    dispatch({
+      type: GET_TV_TRAILER,
       payload: res.data.results
     });
   } catch (err) {}

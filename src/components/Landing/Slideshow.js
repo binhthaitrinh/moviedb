@@ -36,7 +36,7 @@ const Slideshow = ({ movies }) => {
           .splice(0, 30)
           .join(' ')}...`}</p>
         <div className="trending-action">
-          <Link to="/">
+          <Link to={`/movie/details/${item.id}`}>
             <button className="btn btn-primary">More info</button>
           </Link>
           <button className="btn btn-border">Add to List</button>

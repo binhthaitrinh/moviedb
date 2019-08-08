@@ -27,7 +27,7 @@ const MovieTrailer = props => {
 
   return (
     <div className="movie-detail-content">
-      <h1 className="movie-detail-header">Trailers</h1>
+      <h1 className="movie-detail-header">Trailer</h1>
       {renderTrailer()}
     </div>
   );
