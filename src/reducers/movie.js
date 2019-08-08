@@ -6,7 +6,8 @@ import {
   GET_MOVIE_DETAIL,
   SET_LOADING,
   GET_MOVIE_TRAILER,
-  GET_MOVIE_CREDIT
+  GET_MOVIE_CREDIT,
+  SEARCH_MOVIE
 } from '../actions/types';
 
 const initialState = {
@@ -42,7 +43,12 @@ const initialState = {
   },
   movie: null,
   loading: true,
-  error: {}
+  error: {},
+  searchedMovie: {
+    movies: [],
+    loading: true,
+    error: {}
+  }
 };
 
 export default function(state = initialState, action) {
@@ -110,6 +116,23 @@ export default function(state = initialState, action) {
       return {
         ...state,
         movieCredit: { ...state.movieCredit, cast: payload, loading: false }
+      };
+    case SEARCH_MOVIE:
+      return {
+        ...state,
+        searchedMovie: {
+          ...state.searchedMovie,
+          movies: payload,
+          loading: false
+        }
+      };
+    case 'LOADING_SEARCH':
+      return {
+        ...state,
+        searchedMovie: {
+          ...state.searchedMovie,
+          loading: true
+        }
       };
     default:
       return state;

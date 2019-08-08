@@ -9,6 +9,7 @@ import TvDetail from './components/TV/TvDetail';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import ScrollToTop from './components/Layout/ScrollToTop';
+import SearchMovie from './components/Movie/SearchMovie';
 import store from './store';
 
 import './App.css';
@@ -41,6 +42,7 @@ function App() {
             <Route exact path="/tv/details/:id" component={TvDetail} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/search-result/:query" component={SearchMovie} />
           </Switch>
           <Footer />
         </Fragment>

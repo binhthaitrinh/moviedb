@@ -7,7 +7,8 @@ import {
   GET_MOVIE_DETAIL,
   SET_LOADING,
   GET_MOVIE_TRAILER,
-  GET_MOVIE_CREDIT
+  GET_MOVIE_CREDIT,
+  SEARCH_MOVIE
 } from './types';
 import {
   API_KEY,
@@ -128,5 +129,25 @@ export const getMovieCredit = id => async dispatch => {
       type: GET_MOVIE_CREDIT,
       payload: res.data.cast
     });
+  } catch (err) {}
+};
+
+export const searchMovie = query => async dispatch => {
+  dispatch({
+    type: 'LOADING_SEARCH'
+  });
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}search/multi?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`,
+      config
+    );
+
+    // console.log(res.data.results);
+    setTimeout(() => {
+      dispatch({
+        type: SEARCH_MOVIE,
+        payload: res.data.results
+      });
+    }, 500);
   } catch (err) {}
 };

@@ -176,7 +176,7 @@ img {
 
 .header2 {
   background-color: $primary-color;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .bg {
@@ -273,26 +273,27 @@ img {
         position: absolute;
         right: 0;
         top: 3.2rem;
-        background-color: $secondary-color;
-        width: 12rem;
-        padding: 1rem 0.8rem;
+        background-color: $white-color;
+        color: $primary-color;
+        width: 16rem;
+        padding: 1.2rem 1rem;
         border-radius: 4px;
         font-size: 1rem;
-        line-height: 1.8;
-        overflow: hidden;
+        line-height: 1.6;
+
         @include easeOut;
 
         &::after {
           content: '';
           position: absolute;
-          top: -6px;
+          top: -7px;
           right: 0;
           z-index: 4000;
           display: block;
           height: 0;
           width: 0;
           border: solid 6px transparent;
-          border-bottom: solid 10px $secondary-color;
+          border-bottom: solid 10px $white-color;
           border-top-width: 0px;
           background: none;
         }
@@ -304,6 +305,19 @@ img {
         hr {
           margin: 0.8rem auto;
         }
+
+        .profile-section {
+          color: $primary-color;
+          width: 100%;
+
+          &:hover {
+            background-color: $primary-color;
+          }
+
+          i {
+            margin-right: 1rem;
+          }
+        }
       }
     }
 
@@ -312,6 +326,11 @@ img {
       align-items: center;
       justify-content: center;
       border: 1px solid $white-color;
+      @include easeOut;
+
+      &:focus-within {
+        transform: translateY(-3px);
+      }
 
       .menu-search-bar {
         background-color: $primary-color;
@@ -334,7 +353,7 @@ img {
 
         border-left: none;
         font-size: 1rem;
-        padding: 0.4rem 0.6rem;
+        padding: 0.55rem 0.6rem;
         background-color: $primary-color;
         margin-right: 0;
       }
@@ -642,4 +661,50 @@ img {
 .alert-success {
   background: var(--success-color);
   color: #fff;
+}
+
+.search-movie-list {
+  max-width: 80rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2.5rem;
+  grid-row-gap: 3rem;
+
+  .search-movie-item {
+    .search-movie-img {
+      height: 22rem;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+      margin-top: 0.8rem;
+      font-size: 1.5rem;
+      color: $secondary-color;
+    }
+
+    p {
+      font-size: 1rem;
+      color: darken($white-color, 20);
+    }
+  }
+}
+
+.search-page-header {
+  font-size: 3rem;
+  text-align: center;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 8rem;
+    height: 3px;
+    background-color: $white-color;
+    margin: auto;
+    margin-top: 1rem;
+  }
 }

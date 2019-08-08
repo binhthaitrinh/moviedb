@@ -14,3 +14,4 @@ export const GET_MOVIE_TRAILER = 'GET_MOVIE_TRAILER';
 export const GET_TV_DETAIL = 'GET_TV_DETAIL';
 export const GET_TV_CREDIT = 'GET_TV_CREDIT';
 export const GET_TV_TRAILER = 'GET_TV_TRAILER';
+export const SEARCH_MOVIE = 'SEARCH_MOVIE';

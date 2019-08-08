@@ -1,9 +1,23 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 
-const Navbar = ({ auth, logout }) => {
+import { withRouter } from 'react-router-dom';
+
+const Navbar = ({ auth, logout, history }) => {
+  const [query, setQuery] = useState('');
+
+  const onChange = e => {
+    setQuery(e.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    history.push(`/search-result/${query}`);
+    setQuery('');
+  };
+
   return (
     <Fragment>
       <header>
@@ -32,15 +46,19 @@ const Navbar = ({ auth, logout }) => {
             </li>
           </ul>
           <div className="menu-profile">
-            <form>
+            <form onSubmit={e => onSubmit(e)}>
               <input
                 type="text"
                 className="menu-search-bar"
                 placeholder="Enter something..."
+                name="query"
+                value={query}
+                onChange={onChange}
+                autoComplete="off"
               />
-              <Link to="/" className="btn menu-search-btn">
+              <button className="btn menu-search-btn">
                 <i className="fas fa-search" />
-              </Link>
+              </button>
             </form>
             {/* <div className="profile-avatar" /> */}
             {auth.isAuthenticated && auth.user ? (
@@ -55,9 +73,17 @@ const Navbar = ({ auth, logout }) => {
                   <h1>{auth.user.credentials.handle}</h1>
                   <p className="long-post">{auth.user.credentials.location}</p>
                   <hr />
-                  <p>Account</p>
-                  <p>My List</p>
-                  <button onClick={() => logout()} className="btn btn-normal">
+
+                  <Link to="/">
+                    <div className="profile-section">
+                      <i className="fas fa-user" />
+                      <span>My Profile</span>
+                    </div>
+                  </Link>
+                  <button
+                    onClick={() => logout()}
+                    className="btn btn-primary-regular"
+                    style={{ marginTop: '1rem' }}>
                     Sign out
                   </button>
                 </div>
@@ -82,7 +108,9 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Navbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logout }
+  )(Navbar)
+);
