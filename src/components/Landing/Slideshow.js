@@ -30,7 +30,9 @@ const Slideshow = ({ movies }) => {
       }}>
       <div className="trending-hero-box">
         <h2 className="trending-text">Now Playing</h2>
-        <h1 className="trending-movie-title">{item.title || 'Unknown'}</h1>
+        <h1 className="trending-movie-title">
+          {item.title || item.name || 'Unknown'}
+        </h1>
         <p className="trending-movie-desc">{`${item.overview
           .split(' ')
           .splice(0, 30)

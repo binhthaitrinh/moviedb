@@ -10,6 +10,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import ScrollToTop from './components/Layout/ScrollToTop';
 import SearchMovie from './components/Movie/SearchMovie';
+import LikedMovieList from './components/Movie/LikedMovieList';
 import store from './store';
 
 import './App.css';
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/search-result/:query" component={SearchMovie} />
+            <Route exact path="/my-list" component={LikedMovieList} />
           </Switch>
           <Footer />
         </Fragment>

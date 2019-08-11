@@ -82,7 +82,7 @@ const Navbar = ({ auth, logout, history }) => {
                       <span>My Profile</span>
                     </div>
                   </Link>
-                  <Link to="/">
+                  <Link to="/my-list">
                     <div className="profile-section">
                       <i className="fas fa-list" />
                       <span>My list</span>

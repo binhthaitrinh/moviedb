@@ -48,6 +48,11 @@ const initialState = {
     movies: [],
     loading: true,
     error: {}
+  },
+  myList: {
+    movies: [],
+    loading: true,
+    error: {}
   }
 };
 
@@ -96,6 +101,15 @@ export default function(state = initialState, action) {
         ...state,
         movie: payload,
         loading: false
+      };
+    case 'GET_MOVIE_LIST_DETAIL':
+      return {
+        ...state,
+        myList: {
+          ...state.myList,
+          movies: payload,
+          loading: false
+        }
       };
     case SET_LOADING:
       return {

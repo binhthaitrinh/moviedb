@@ -17,7 +17,8 @@ const config = {
 export const getTopRatedTV = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+      `${PATH_BASE}tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
+      config
     );
 
     dispatch({
@@ -30,7 +31,8 @@ export const getTopRatedTV = () => async dispatch => {
 export const getLatestTV = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`
+      `${PATH_BASE}tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`,
+      config
     );
 
     dispatch({
@@ -45,7 +47,8 @@ export const getLatestTV = () => async dispatch => {
 export const getPopularTV = () => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}tv/popular?api_key=${API_KEY}&language=en-US&page=1`
+      `${PATH_BASE}tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
+      config
     );
 
     dispatch({

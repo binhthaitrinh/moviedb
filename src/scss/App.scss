@@ -36,6 +36,7 @@ img {
   overflow: hidden;
   position: relative;
   margin-right: 0.8rem;
+  outline: none;
 
   &.btn-lg {
     font-size: 1.5rem;
@@ -65,7 +66,7 @@ img {
     @include easeOut;
 
     &:hover {
-      background-color: darkten($secondary-color, 10);
+      background-color: darken($secondary-color, 10);
     }
   }
 

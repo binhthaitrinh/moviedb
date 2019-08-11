@@ -1,16 +1,56 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getTvDetail, getCredit, getTrailer } from '../../../actions/tv';
+import { likeMovie, unlikeMovie } from '../../../actions/movie';
 import Spinner from '../../Layout/Spinner';
 import MovieTrailer from '../../MovieDetail/MovieTrailer';
 import ActorCarousel from '../../ImageCarousel/ActorCarousel';
 
-const TvDetail = ({ match, tv, getTvDetail, getCredit, getTrailer }) => {
+const TvDetail = ({
+  match,
+  user,
+  tv,
+  getTvDetail,
+  likeMovie,
+  unlikeMovie,
+  getCredit,
+  getTrailer
+}) => {
   useEffect(() => {
     getTvDetail(match.params.id);
     getCredit(match.params.id);
     getTrailer(match.params.id);
   }, [getTvDetail, match.params.id, getCredit, getTrailer]);
+
+  const renderLikeButton = id => {
+    let exist = false;
+    if (user) {
+      user.likes.map(like => {
+        if (parseInt(like.movieId) === id) {
+          exist = true;
+        }
+      });
+    }
+
+    if (exist) {
+      return (
+        <button
+          className="btn like-btn-active"
+          onClick={() => unlikeMovie(tv.tv.id)}>
+          <i className="fas fa-heart" />
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className="btn like-btn-nonactive"
+          onClick={() => likeMovie(tv.tv.id, 'tv')}>
+          <i className="far fa-heart" />
+        </button>
+      );
+    }
+  };
+
   return tv.loading ? (
     <Spinner />
   ) : (
@@ -46,6 +86,7 @@ const TvDetail = ({ match, tv, getTvDetail, getCredit, getTrailer }) => {
               <p className="long-post">
                 {tv.tv.genres.map(genre => genre.name).join(', ')}
               </p>
+              {renderLikeButton(tv.tv.id)}
             </div>
           </div>
         </div>
@@ -64,10 +105,11 @@ const TvDetail = ({ match, tv, getTvDetail, getCredit, getTrailer }) => {
 };
 
 const mapStateToProps = state => ({
-  tv: state.tv
+  tv: state.tv,
+  user: state.auth.user
 });
 
 export default connect(
   mapStateToProps,
-  { getTvDetail, getCredit, getTrailer }
+  { getTvDetail, getCredit, getTrailer, likeMovie, unlikeMovie }
 )(TvDetail);

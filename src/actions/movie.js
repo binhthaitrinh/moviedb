@@ -18,6 +18,7 @@ import {
   PARAM_MOVIE_TYPE,
   PARAM_POPULAR_MOVIE
 } from '../constants/movieDB';
+import { isObject } from 'util';
 
 const config = {
   headers: null
@@ -104,6 +105,61 @@ export const getMovieDetail = id => async dispatch => {
   } catch (err) {}
 };
 
+export const getMovieListDetail = list => async dispatch => {
+  let result = [];
+  let res = {};
+  try {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].type === 'movie') {
+        res = await axios.get(
+          `${PATH_BASE}movie/${list[i].id}?api_key=${API_KEY}&language=en-US`,
+          config
+        );
+      } else {
+        res = await axios.get(
+          `${PATH_BASE}tv/${list[i].id}?api_key=${API_KEY}&language=en-US`,
+          config
+        );
+      }
+
+      result.push(res.data);
+    }
+    // const res1 = await axios.get(
+    //   `${PATH_BASE}movie/${list[0]}?api_key=${API_KEY}&language=en-US`,
+    //   config
+    // );
+    // const res2 = await axios.get(
+    //   `${PATH_BASE}movie/${list[1]}?api_key=${API_KEY}&language=en-US`,
+    //   config
+    // );
+    // const res3 = await axios.get(
+    //   `${PATH_BASE}movie/${list[2]}?api_key=${API_KEY}&language=en-US`,
+    //   config
+    // );
+    // result = [res1.data, res2.data, res3.data];
+
+    // let result = [];
+    // console.log(result);
+    // let res;
+    // try {
+    //   list.forEach(async item => {
+    //     res = await axios.get(
+    //       `${PATH_BASE}movie/${item}?api_key=${API_KEY}&language=en-US`,
+    //       config
+    //     );
+    //     result = [...result, res.data];
+    //   });
+    //   console.log(result['1']);
+    //   console.log(result, 234);
+    //   let result2 = Object.keys(result).map(i => result[i]);
+    //   console.log(result2, 345);
+    dispatch({
+      type: 'GET_MOVIE_LIST_DETAIL',
+      payload: result
+    });
+  } catch (err) {}
+};
+
 export const getTrailer = id => async dispatch => {
   try {
     const res = await axios.get(
@@ -152,10 +208,10 @@ export const searchMovie = query => async dispatch => {
   } catch (err) {}
 };
 
-export const likeMovie = movieId => async dispatch => {
+export const likeMovie = (movieId, type = 'movie') => async dispatch => {
   try {
     const res = await axios.get(
-      `https://us-central1-moviedb-f4641.cloudfunctions.net/api/movie/${movieId}/like`
+      `https://us-central1-moviedb-f4641.cloudfunctions.net/api/movie/${movieId}/${type}/like`
     );
     dispatch({
       type: 'LIKE_MOVIE',
@@ -171,8 +227,7 @@ export const unlikeMovie = movieId => async dispatch => {
     const res = await axios.get(
       `https://us-central1-moviedb-f4641.cloudfunctions.net/api/movie/${movieId}/unlike`
     );
-    console.log(res.data.likeId);
-    console.log(typeof res.data.likeId);
+
     dispatch({
       type: 'UNLIKE_MOVIE',
       payload: res.data.likeId
