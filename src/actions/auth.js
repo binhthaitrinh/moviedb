@@ -10,7 +10,7 @@ export const loadUser = () => async dispatch => {
 
   try {
     const res = await axios.get(
-      'https://us-central1-social-ape-c1875.cloudfunctions.net/api/user'
+      'https://us-central1-moviedb-f4641.cloudfunctions.net/api/auth'
     );
     console.log(res);
     dispatch({
@@ -24,7 +24,7 @@ export const login = formData => async dispatch => {
   dispatch({ type: 'LOADING_UI' });
   try {
     const res = await axios.post(
-      'https://us-central1-social-ape-c1875.cloudfunctions.net/api/login',
+      'https://us-central1-moviedb-f4641.cloudfunctions.net/api/auth',
       formData
     );
 
@@ -38,6 +38,20 @@ export const login = formData => async dispatch => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const register = formData => async dispatch => {
+  try {
+    const res = await axios.post(
+      'https://us-central1-moviedb-f4641.cloudfunctions.net/api/users',
+      formData
+    );
+    dispatch({
+      type: 'REGISTER_SUCCESS',
+      payload: res.data
+    });
+    dispatch(loadUser());
+  } catch (err) {}
 };
 
 export const logout = () => dispatch => {

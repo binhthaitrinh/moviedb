@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import {
   getMovieDetail,
   getTrailer,
-  getMovieCredit
+  getMovieCredit,
+  likeMovie,
+  unlikeMovie
 } from '../../actions/movie';
 import Spinner from '../Layout/Spinner';
 import MovieTrailer from './MovieTrailer';
@@ -15,13 +17,65 @@ const MovieDetail = ({
   movieCredit,
   getMovieDetail,
   getTrailer,
-  getMovieCredit
+  getMovieCredit,
+  likeMovie,
+  user,
+  unlikeMovie
 }) => {
   useEffect(() => {
     getMovieDetail(match.params.id);
     getTrailer(match.params.id);
     getMovieCredit(match.params.id);
   }, [getMovieDetail, getTrailer, getMovieCredit, match.params.id]);
+
+  const renderLikeButton = id => {
+    let exist = false;
+    if (user) {
+      user.likes.map(like => {
+        if (parseInt(like.movieId) === id) {
+          exist = true;
+        }
+      });
+    }
+
+    if (exist) {
+      return (
+        <button
+          className="btn like-btn-active"
+          onClick={() => unlikeMovie(movie.movie.id)}>
+          <i className="fas fa-heart" />
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className="btn like-btn-nonactive"
+          onClick={() => likeMovie(movie.movie.id)}>
+          <i className="far fa-heart" />
+        </button>
+      );
+    }
+    // if (user) {
+    //   if (user.likes.indexOf(id) === -1) {
+    //     return (
+    //       <button
+    //         className="btn btn-normal"
+    //         onClick={() => likeMovie(movie.movie.id)}>
+    //         <i className="far fa-heart" />
+    //       </button>
+    //     );
+    //   } else {
+    //     return (
+    //       <button
+    //         className="btn btn-normal"
+    //         onClick={() => likeMovie(movie.movie.id)}>
+    //         <i className="fas fa-heart" />
+    //       </button>
+    //     );
+    //   }
+    // }
+  };
+
   return movie.loading ? (
     <Spinner />
   ) : (
@@ -56,9 +110,17 @@ const MovieDetail = ({
                 )}
               </div>
 
-              <p className="long-post">
+              <p className="long-post" style={{ marginBottom: '1rem' }}>
                 {movie.movie.genres.map(genre => genre.name).join(', ')}
               </p>
+              {renderLikeButton(movie.movie.id)}
+              {/* <button
+                className="btn btn-normal"
+                onClick={() => likeMovie(movie.movie.id)}>
+                <i class="far fa-heart" />
+              </button> */}
+
+              {/* <i class="fas fa-heart"></i> */}
             </div>
           </div>
         </div>
@@ -78,10 +140,11 @@ const MovieDetail = ({
 
 const mapStateToProps = state => ({
   movie: state.movie,
-  movieCredit: state.movie.movieCredit
+  movieCredit: state.movie.movieCredit,
+  user: state.auth.user
 });
 
 export default connect(
   mapStateToProps,
-  { getMovieDetail, getTrailer, getMovieCredit }
+  { getMovieDetail, getTrailer, getMovieCredit, likeMovie, unlikeMovie }
 )(MovieDetail);

@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
-import { login } from '../../actions/auth';
+import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Alert from '../Layout/Alert';
 import { Link } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
 
 const initial = { email: '', password: '', password2: '', handle: '' };
 
-const Register = ({ login, isAuthenticated, user }) => {
+const Register = ({ register, isAuthenticated, user }) => {
   const [formData, setFormData] = useState({ ...initial });
   const { email, password, password2, handle } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert('Password do not match', 'danger');
+    } else {
+      register(formData);
+    }
   };
   if (isAuthenticated) {
     return <Redirect to="/" />;
@@ -29,7 +39,7 @@ const Register = ({ login, isAuthenticated, user }) => {
       <div className="content">
         <Alert />
         <h1 className="text-primary large">Register</h1>
-        <form className="form">
+        <form className="form" onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input
               type="text"
@@ -69,15 +79,7 @@ const Register = ({ login, isAuthenticated, user }) => {
             />
           </div>
 
-          <button
-            onClick={e => {
-              e.preventDefault();
-              login(formData);
-              console.log(formData);
-            }}
-            className="btn btn-border-primary">
-            Submit
-          </button>
+          <button className="btn btn-border-primary">Submit</button>
         </form>
         <p className="long-post">
           Already have an account? <Link to="/login">Log in here</Link>{' '}
@@ -94,5 +96,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login }
+  { register }
 )(Register);

@@ -41,48 +41,44 @@ const SearchMovie = ({ searchMovie, match, searchedMovie }) => {
     return result;
   };
 
-  return (
-    <div className="header2" style={{ padding: '10rem 5rem' }}>
-      {searchedMovie.loading ? (
-        <Spinner />
-      ) : (
-        <Fragment>
-          <h1 className="search-page-header">
-            Search result for{' '}
-            <span style={{ color: 'red', textTransform: 'uppercase' }}>
-              {match.params.query}
-            </span>
-          </h1>
-          <div className="search-movie-list">
-            {searchedMovie.movies.map(movie => (
-              <div className="search-movie-item">
-                <Link
-                  to={
-                    movie.media_type === 'tv'
-                      ? `/tv/details/${movie.id}`
-                      : `/movie/details/${movie.id}`
-                  }>
-                  <img
-                    key={movie.id}
-                    className="search-movie-img"
-                    src={
-                      movie.poster_path
-                        ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-                        : 'https://via.placeholder.com/320x200'
-                    }
-                    alt={`${movie.original_name}`}
-                  />
-                </Link>
+  return searchedMovie.loading ? (
+    <Spinner />
+  ) : (
+    <div className="header2" style={{ padding: '8rem 5rem' }}>
+      <h1 className="search-page-header">
+        Search result for{' '}
+        <span style={{ color: 'red', textTransform: 'uppercase' }}>
+          {match.params.query}
+        </span>
+      </h1>
+      <div className="search-movie-list">
+        {searchedMovie.movies.map(movie => (
+          <div className="search-movie-item">
+            <Link
+              to={
+                movie.media_type === 'tv'
+                  ? `/tv/details/${movie.id}`
+                  : `/movie/details/${movie.id}`
+              }>
+              <img
+                key={movie.id}
+                className="search-movie-img"
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                    : 'https://via.placeholder.com/320x200'
+                }
+                alt={`${movie.original_name}`}
+              />
+            </Link>
 
-                <h1 className="search-movie-title">
-                  {movie.title || movie.original_name}
-                </h1>
-                <p>{findGenre(movie)}</p>
-              </div>
-            ))}
+            <h1 className="search-movie-title">
+              {movie.title || movie.original_name}
+            </h1>
+            <p>{findGenre(movie)}</p>
           </div>
-        </Fragment>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

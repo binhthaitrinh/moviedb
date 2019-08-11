@@ -16,7 +16,24 @@ export default function(state = initialState, action) {
         loading: false,
         user: payload
       };
+    case 'LIKE_MOVIE':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          likes: payload.likes
+        }
+      };
+    case 'UNLIKE_MOVIE':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          likes: state.user.likes.filter(like => like.id !== payload)
+        }
+      };
     case 'LOGIN_SUCCESS':
+    case 'REGISTER_SUCCESS':
       localStorage.setItem('token', payload.token);
       return {
         ...state,

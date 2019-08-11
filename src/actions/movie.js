@@ -151,3 +151,33 @@ export const searchMovie = query => async dispatch => {
     }, 500);
   } catch (err) {}
 };
+
+export const likeMovie = movieId => async dispatch => {
+  try {
+    const res = await axios.get(
+      `https://us-central1-moviedb-f4641.cloudfunctions.net/api/movie/${movieId}/like`
+    );
+    dispatch({
+      type: 'LIKE_MOVIE',
+      payload: res.data
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const unlikeMovie = movieId => async dispatch => {
+  try {
+    const res = await axios.get(
+      `https://us-central1-moviedb-f4641.cloudfunctions.net/api/movie/${movieId}/unlike`
+    );
+    console.log(res.data.likeId);
+    console.log(typeof res.data.likeId);
+    dispatch({
+      type: 'UNLIKE_MOVIE',
+      payload: res.data.likeId
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};

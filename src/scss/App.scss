@@ -43,6 +43,32 @@ img {
     margin-right: 1.5rem;
   }
 
+  &.like-btn-nonactive {
+    background-color: lighten($primary-color, 10);
+    color: $white-color;
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    @include easeOut;
+
+    &:hover {
+      background-color: lighten($primary-color, 25);
+    }
+  }
+
+  &.like-btn-active {
+    background-color: $secondary-color;
+    color: $white-color;
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    @include easeOut;
+
+    &:hover {
+      background-color: darkten($secondary-color, 10);
+    }
+  }
+
   &.btn-border {
     border: 1px solid $white-color;
     background-color: transparent;
@@ -276,7 +302,7 @@ img {
         background-color: $white-color;
         color: $primary-color;
         width: 16rem;
-        padding: 1.2rem 1rem;
+        padding: 1.2rem 0rem;
         border-radius: 4px;
         font-size: 1rem;
         line-height: 1.6;
@@ -300,18 +326,27 @@ img {
 
         h1 {
           line-height: 1.2;
+          margin-left: 0.8rem;
         }
 
         hr {
-          margin: 0.8rem auto;
+          margin: 0.8rem auto 0.4rem auto;
+          width: 90%;
+        }
+
+        .long-post {
+          margin-left: 0.8rem;
         }
 
         .profile-section {
           color: $primary-color;
           width: 100%;
+          padding: 0.5rem 0.8rem;
+          @include easeOut;
 
           &:hover {
-            background-color: $primary-color;
+            background-color: $secondary-color;
+            color: $white-color;
           }
 
           i {

@@ -60,18 +60,20 @@ const Navbar = ({ auth, logout, history }) => {
                 <i className="fas fa-search" />
               </button>
             </form>
-            {/* <div className="profile-avatar" /> */}
+
             {auth.isAuthenticated && auth.user ? (
               <div className="profile-avatar">
                 <div
                   className="profile-avatar-avatar"
                   style={{
-                    backgroundImage: `url(${auth.user.credentials.imageUrl})`
+                    backgroundImage: `url(https:${
+                      auth.user.credentials.avatar
+                    })`
                   }}
                 />
                 <div className="profile-panel">
                   <h1>{auth.user.credentials.handle}</h1>
-                  <p className="long-post">{auth.user.credentials.location}</p>
+                  <p className="long-post">{auth.user.credentials.email}</p>
                   <hr />
 
                   <Link to="/">
@@ -80,10 +82,17 @@ const Navbar = ({ auth, logout, history }) => {
                       <span>My Profile</span>
                     </div>
                   </Link>
+                  <Link to="/">
+                    <div className="profile-section">
+                      <i className="fas fa-list" />
+                      <span>My list</span>
+                    </div>
+                  </Link>
+
                   <button
                     onClick={() => logout()}
                     className="btn btn-primary-regular"
-                    style={{ marginTop: '1rem' }}>
+                    style={{ marginTop: '1rem', marginLeft: '.8rem' }}>
                     Sign out
                   </button>
                 </div>
