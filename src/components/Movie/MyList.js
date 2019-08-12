@@ -27,10 +27,16 @@ const MyList = ({ movies }) => {
                 alt={`${movie.original_name}`}
               />
             </Link>
-
-            <h1 className="search-movie-title">
-              {movie.title || movie.original_name}
-            </h1>
+            <Link
+              to={
+                movie.seasons
+                  ? `/tv/details/${movie.id}`
+                  : `/movie/details/${movie.id}`
+              }>
+              <h1 className="search-movie-title">
+                {movie.title || movie.original_name}
+              </h1>
+            </Link>
             <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
           </div>
         ))}

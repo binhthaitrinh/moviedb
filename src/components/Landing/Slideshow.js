@@ -30,7 +30,7 @@ const Slideshow = ({ movies }) => {
       }}>
       <div className="trending-hero-box">
         <h2 className="trending-text">Now Playing</h2>
-        <h1 className="trending-movie-title">
+        <h1 className="text-heading text-shadow">
           {item.title || item.name || 'Unknown'}
         </h1>
         <p className="trending-movie-desc">{`${item.overview

@@ -434,14 +434,6 @@ img {
     margin-bottom: 1rem;
   }
 
-  .trending-movie-title {
-    font-size: 4rem;
-    text-transform: uppercase;
-    line-height: 1.2;
-    color: $white-color;
-    text-shadow: 3px 2px 4px lighten($primary-color, 10);
-  }
-
   .trending-movie-desc {
     font-size: 1.2rem;
     margin-bottom: 0.8rem;
@@ -468,11 +460,6 @@ img {
 .section-movie-list {
   color: lighten($primary-color, 18);
   margin-top: 3rem;
-
-  &-header {
-    font-size: 3rem;
-    text-transform: uppercase;
-  }
 }
 
 .swiper-container {
@@ -671,31 +658,42 @@ img {
   font-size: 3rem;
 }
 
+.text-heading {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.text-shadow {
+  text-shadow: 3px 2px 4px lighten($primary-color, 10);
+}
+
 .alert {
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
-  background: var(--light-color);
+  background: $secondary-color;
   color: #333;
+  font-size: 1rem;
 }
 
 .alert-primary {
-  background: var(--primary-color);
+  background: green;
   color: #fff;
 }
 
 .alert-light {
-  background: var(--light-color);
+  background: $primary-color;
   color: #333;
 }
 
 .alert-danger {
-  background: var(--danger-color);
+  background: $secondary-color;
   color: #fff;
 }
 
 .alert-success {
-  background: var(--success-color);
+  background: green;
   color: #fff;
 }
 

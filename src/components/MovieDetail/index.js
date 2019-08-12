@@ -33,7 +33,9 @@ const MovieDetail = ({
     if (user) {
       user.likes.map(like => {
         if (parseInt(like.movieId) === id) {
-          exist = true;
+          return (exist = true);
+        } else {
+          return (exist = false);
         }
       });
     }

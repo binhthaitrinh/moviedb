@@ -2,46 +2,52 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ImageCarousel from '../ImageCarousel';
 import { getLatestTV, getPopularTV, getTopRatedTV } from '../../actions/tv';
+import {
+  getPopularMovie,
+  getNowPlayingMovie,
+  getTopRatedMovie
+} from '../../actions/movie';
 import SpinnerSm from '../Layout/SpinnerSm';
 
 const TVCarousels = ({
-  tv: { popularTV, topRatedTV, latestTV },
-  getLatestTV,
-  getPopularTV,
-  getTopRatedTV
+  movie: { nowPlayingMovies, popularMovies, topRatedMovies },
+  getPopularMovie,
+  getNowPlayingMovie,
+  getTopRatedMovie
 }) => {
   useEffect(() => {
-    getLatestTV();
-    getPopularTV();
-    getTopRatedTV();
-  }, [getLatestTV, getPopularTV, getTopRatedTV]);
+    getNowPlayingMovie('tv');
+    getPopularMovie('tv');
+    getTopRatedMovie('tv');
+  }, [getPopularMovie, getNowPlayingMovie, getTopRatedMovie]);
 
-  return popularTV.loading || topRatedTV.loading || latestTV.loading ? (
+  return nowPlayingMovies.loading ||
+    topRatedMovies.loading ||
+    popularMovies.loading ? (
     <SpinnerSm />
   ) : (
     <Fragment>
       <div className="section-movie-list">
-        {console.log(popularTV.movies, 232323)}
-        <h1 className="section-movie-list-header">Popular TV</h1>
-        <ImageCarousel movies={popularTV.movies} type="tv" />
+        <h1 className="text-heading">Popular TV</h1>
+        <ImageCarousel movies={popularMovies.movies} type="tv" />
       </div>
       <div className="section-movie-list">
-        <h1 className="section-movie-list-header">Latest TV</h1>
-        <ImageCarousel movies={latestTV.movies} type="tv" />
+        <h1 className="text-heading">Latest TV</h1>
+        <ImageCarousel movies={nowPlayingMovies.movies} type="tv" />
       </div>
       <div className="section-movie-list">
-        <h1 className="section-movie-list-header">Top Rated TV</h1>
-        <ImageCarousel movies={topRatedTV.movies} type="tv" />
+        <h1 className="text-heading">Top Rated TV</h1>
+        <ImageCarousel movies={topRatedMovies.movies} type="tv" />
       </div>
     </Fragment>
   );
 };
 
 const mapStateToProps = state => ({
-  tv: state.tv
+  movie: state.movie
 });
 
 export default connect(
   mapStateToProps,
-  { getLatestTV, getPopularTV, getTopRatedTV }
+  { getPopularMovie, getNowPlayingMovie, getTopRatedMovie }
 )(TVCarousels);

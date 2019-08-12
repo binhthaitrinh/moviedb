@@ -111,6 +111,22 @@ export default function(state = initialState, action) {
           loading: false
         }
       };
+    case 'SET_MOVIE_LOADING':
+      return {
+        ...state,
+        topRatedMovies: {
+          ...state.topRatedMovies,
+          loading: true
+        },
+        nowPlayingMovies: {
+          ...state.nowplayingMovies,
+          loading: true
+        },
+        popularMovies: {
+          ...state.popularMovies,
+          loading: true
+        }
+      };
     case SET_LOADING:
       return {
         ...state,

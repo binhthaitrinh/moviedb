@@ -314,12 +314,6 @@ img {
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
     margin-bottom: 1rem; }
-  .trending-hero-box .trending-movie-title {
-    font-size: 4rem;
-    text-transform: uppercase;
-    line-height: 1.2;
-    color: #fff;
-    text-shadow: 3px 2px 4px #2e2e2e; }
   .trending-hero-box .trending-movie-desc {
     font-size: 1.2rem;
     margin-bottom: 0.8rem; }
@@ -339,9 +333,6 @@ img {
 .section-movie-list {
   color: #424242;
   margin-top: 3rem; }
-  .section-movie-list-header {
-    font-size: 3rem;
-    text-transform: uppercase; }
 
 .swiper-container {
   width: 100%;
@@ -498,27 +489,36 @@ img {
 .large {
   font-size: 3rem; }
 
+.text-heading {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  line-height: 1.4; }
+
+.text-shadow {
+  text-shadow: 3px 2px 4px #2e2e2e; }
+
 .alert {
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
-  background: var(--light-color);
-  color: #333; }
+  background: #e50914;
+  color: #333;
+  font-size: 1rem; }
 
 .alert-primary {
-  background: var(--primary-color);
+  background: green;
   color: #fff; }
 
 .alert-light {
-  background: var(--light-color);
+  background: #141414;
   color: #333; }
 
 .alert-danger {
-  background: var(--danger-color);
+  background: #e50914;
   color: #fff; }
 
 .alert-success {
-  background: var(--success-color);
+  background: green;
   color: #fff; }
 
 .search-movie-list {

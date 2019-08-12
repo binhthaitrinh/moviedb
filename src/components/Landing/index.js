@@ -1,12 +1,12 @@
 import React, { useEffect, Fragment, useState } from 'react';
 import Slideshow from './Slideshow';
 import { connect } from 'react-redux';
-import { getTrending } from '../../actions/movie';
+import { getTrending, setMovieLoading } from '../../actions/movie';
 import { Spinner } from '../Layout';
 import { MovieCarousels } from '../Movie';
 import TVCarousels from '../TV/TVCarousels';
 
-const Landing = ({ movie, getTrending }) => {
+const Landing = ({ movie, getTrending, setMovieLoading }) => {
   const [type, setType] = useState('movie');
   useEffect(() => {
     getTrending();
@@ -24,12 +24,18 @@ const Landing = ({ movie, getTrending }) => {
       <div className="section-content">
         <div className="type-selector">
           <button
-            onClick={() => setType('movie')}
+            onClick={() => {
+              setType('movie');
+              setMovieLoading();
+            }}
             className="btn btn-primary btn-lg">
             Movies
           </button>
           <button
-            onClick={() => setType('tv')}
+            onClick={() => {
+              setType('tv');
+              setMovieLoading();
+            }}
             className="btn btn-border-dark btn-lg">
             TV shows
           </button>
@@ -46,5 +52,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTrending }
+  { getTrending, setMovieLoading }
 )(Landing);

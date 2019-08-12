@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { searchMovie } from '../../actions/movie';
 import Spinner from '../Layout/Spinner';
@@ -53,7 +53,7 @@ const SearchMovie = ({ searchMovie, match, searchedMovie }) => {
       </h1>
       <div className="search-movie-list">
         {searchedMovie.movies.map(movie => (
-          <div className="search-movie-item">
+          <div key={movie.id} className="search-movie-item">
             <Link
               to={
                 movie.media_type === 'tv'

@@ -27,15 +27,15 @@ const MovieCarousels = ({
   ) : (
     <Fragment>
       <div className="section-movie-list">
-        <h1 className="section-movie-list-header">Popular Movies</h1>
+        <h1 className="text-heading">Popular Movies</h1>
         <ImageCarousel movies={popularMovies.movies} />
       </div>
       <div className="section-movie-list">
-        <h1 className="section-movie-list-header">Now Playing Movies</h1>
+        <h1 className="text-heading">Now Playing Movies</h1>
         <ImageCarousel movies={nowPlayingMovies.movies} />
       </div>
       <div className="section-movie-list">
-        <h1 className="section-movie-list-header">Top Rated Movies</h1>
+        <h1 className="text-heading">Top Rated Movies</h1>
         <ImageCarousel movies={topRatedMovies.movies} />
       </div>
     </Fragment>

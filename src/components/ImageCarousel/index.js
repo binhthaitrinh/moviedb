@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Swiper from 'swiper';
 import { Link } from 'react-router-dom';
-import Genre from '../../constants/Genre';
+import TvGenre from '../../constants/TvGenre';
 
 const ImageCarousel = ({ movies, type = 'movie' }) => {
   const swiperRef = useRef(null);
@@ -34,7 +34,7 @@ const ImageCarousel = ({ movies, type = 'movie' }) => {
 
   const helper = id => {
     let result = '';
-    Genre.genres.forEach(genre => {
+    TvGenre.genres.forEach(genre => {
       if (genre.id === id) {
         result = genre.name;
       }
